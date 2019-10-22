@@ -11,55 +11,52 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Tonis erste Flutter App'),
+      home: TonisKleineSeite(),
     );
   }
 }
 
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class TonisKleineSeite extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _TonisKleineSeiteState createState() => _TonisKleineSeiteState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _TonisKleineSeiteState extends State<TonisKleineSeite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Tonis super Seite!"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: Column(
+        children: <Widget>[
+          Image.network("https://www.planet-wissen.de/natur/voegel/pinguine/intropinguinjungkaisergjpg100~_v-gseapremiumxl.jpg"),
+          buildRow("Name", "Toni"),
+          buildRow("Alter", "20"),
+          buildRow("Wohnort", "Lauterbach"),
+          buildRow("Hobbies", "Chor, Spielen"),
+        ],
       ),
     );
+  }
+
+  Row buildRow(argument, value) {
+    return Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              argument + ": ",
+              style: TextStyle(
+                fontSize: 30,
+              ),
+            ),
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 30,
+              ),
+            ),
+          ],
+        );
   }
 }
